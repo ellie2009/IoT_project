@@ -10,15 +10,15 @@ const email = process.env.PARTICLE_EMAIL;
 const password = process.env.PARTICLE_PASSWORD;
 
 router.get("/", function(req, res, next) {
-    particle.login({username: email, password: password}).then(
-        function(data) {
-          token = data.body.access_token;
-          console.log(token)
-        },
-        function (err) {
-          console.log('Could not log in.', err);
-        }
-      );
-  });
+  particle.login({username: email, password: password}).then(
+      function(data) {
+        token = data.body.access_token;
+        console.log(token)
+      },
+      function (err) {
+        console.log('Could not log in.', err);
+      }
+    );
+});
 
-  module.exports = router;
+module.exports = router;
