@@ -1,6 +1,4 @@
-import logo from './logo.svg';
 import './App.css';
-import Home from './components/Introduction';
 import Introduction from './components/Introduction';
 import Bins from './components/Bins';
 
