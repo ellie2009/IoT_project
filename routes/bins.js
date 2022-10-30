@@ -5,9 +5,7 @@ const db = require("../model/db_helper");
 const populateDatabase = require("../model/database");
 const particle = require("../model/particle");
 
-
 router.use(bodyParser.json());
-
 
 router.get('/checkBinStatus', async function(req,res) {
     try{
