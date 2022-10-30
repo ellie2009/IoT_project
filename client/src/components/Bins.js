@@ -11,7 +11,6 @@ export default function Introduction() {
 
     const changeBinStatus = async (event) => {
         const binId = event.target.value;
-        console.log(binId);
         let response = await fetch(`/bins/emptyBin/${binId}`, {
             method: 'PUT',
             headers: {
@@ -19,8 +18,7 @@ export default function Introduction() {
               },
             body: JSON.stringify({ 'isFull' : '0' })
         });
-        console.log(response);
-   //     await fetchBinStatus();
+        await fetchBinStatus();
     };
 
     return (
