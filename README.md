@@ -17,10 +17,10 @@ Set up your mysql database:
 - log into your local mysql instance
 - create a database called "IoT_bin_project"
 
-Start your backend server:
+Start your backend server and check that it works:
 - inside the main folder run node app.js
-- go to http://localhost:8000/ 
-- to test the particle functionality, got to http://localhost:8000/particle/checkBinStatus
+- populate the database by going to http://localhost:5000/bins/populateDatabase
+- http://localhost:5000/bins/checkBinStatus
 
 to start working on the frontend:
 in the main directory, run npx create-react-app client - this will create a basic React frontend
