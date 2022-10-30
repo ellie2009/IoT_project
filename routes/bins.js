@@ -11,12 +11,12 @@ router.use(bodyParser.json());
 
 router.get('/checkBinStatus', async function(req,res) {
     try{
-        // Query the particle device for corrent isFull status. Returns true/false and not 0/1!
-        const statusSmartBin = await particle.checkBinStatus();
-        const newDbValue = statusSmartBin == false ? 0 : 1;
-        // Update the database with the response obtained from the particle device
+        // Query the particle device for correct isFull status. Returns true/false and not 0/1!
+        const isSmartBinFull = await particle.checkBinStatus();
+        const newDbValue = isSmartBinFull == false ? 0 : 1;
+        // Update the database with the response obtained from the particle device.
         const updateSmartBinDbEntry = await db(`UPDATE bins SET isFull="${newDbValue}" WHERE id="1";`);
-        // Query the database for the status of all bins
+        // Query the database for the status of all bins.
         const response = await db(`SELECT * FROM bins;`);
         res.send(response.data);
     } catch(err){
