@@ -3,6 +3,7 @@ var router = express.Router();
 const bodyParser = require("body-parser");
 const db = require("../model/db_helper");
 const populateDatabase = require("../model/database");
+const particle = require("../model/particle");
 
 
 router.use(bodyParser.json());
@@ -10,6 +11,12 @@ router.use(bodyParser.json());
 
 router.get('/checkBinStatus', async function(req,res) {
     try{
+        // Query the particle device for corrent isFull status. Returns true/false and not 0/1!
+        const statusSmartBin = await particle.checkBinStatus();
+        const newDbValue = statusSmartBin == false ? 0 : 1;
+        // Update the database with the response obtained from the particle device
+        const updateSmartBinDbEntry = await db(`UPDATE bins SET isFull="${newDbValue}" WHERE id="1";`);
+        // Query the database for the status of all bins
         const response = await db(`SELECT * FROM bins;`);
         res.send(response.data);
     } catch(err){
