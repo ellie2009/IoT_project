@@ -4,6 +4,7 @@
 const int trigPin = A0;
 const int echoPin = D0;
 const int ledPin = D6;
+const int buttonPin = D3;
 
 //declaring a variable which is later added to the cloud so it can be retrieved with an API call
 double tempC = 100;
@@ -30,9 +31,23 @@ Particle.function("emptyBin", emptyBin);
 pinMode(trigPin, OUTPUT); // Sets the trigPin as an Output
 pinMode(echoPin, INPUT); // Sets the echoPin as an Input
 pinMode(ledPin, OUTPUT);
+pinMode(buttonPin, INPUT);
 Serial.begin(9600); // Starts the serial communication
 }
 
+
+void loop() {
+      // check if the pushbutton is pressed.
+      // if it is, the buttonState is HIGH:
+      if (digitalRead(buttonPin) == HIGH) {
+        // turn LED on:
+        Serial.print("Button high");
+        emptyBin("empty");
+      } else {
+          Serial.print("Button low");
+      }
+}
+    
 /*
 void loop() {
 // Clears the trigPin
